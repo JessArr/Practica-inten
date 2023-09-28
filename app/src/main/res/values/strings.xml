@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Main-Activiti</string>
+    <string name="Text1">texto en string</string>
+    <string name="Text2">ir a otra actividad</string>
+    <string name="youtube">youtube</string>
+</resources>
