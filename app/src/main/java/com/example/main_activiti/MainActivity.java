@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         B5.setOnClickListener(this);
         B6.setOnClickListener(this);
 
-        new CountDownTimer(2000, 1000) {
+        new CountDownTimer(30000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 text1.setText("seconds remaining: " + millisUntilFinished / 1000);
@@ -54,9 +55,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
 
             if (view.getId() == R.id.boton_1) {
-            Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
-            startActivity(i);
-        }
+                Intent i = new Intent(this, MainActivity2.class);
+                startActivity(i);
+            }
             else if (view.getId() == R.id.boton_2) {
 
 
@@ -66,31 +67,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             else if (view.getId()==R.id.boton_3){
 
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
-                startActivity(i);
+                Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                startActivity(intent);
+
 
             }
 
 
             else if (view.getId()==R.id.boton_4){
 
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
-                startActivity(i);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                startActivity(intent);
 
             }
 
 
             else if (view.getId()==R.id.boton_5){
 
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
-                startActivity(i);
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, "Echa un vistazo a este enlace: https://www.ejemplo.com");
+                startActivity(intent);
 
             }
 
 
             else if (view.getId()==R.id.boton_6){
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
-                startActivity(i);
+                Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194?z=10");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps"); // Abre en Google Maps
+                startActivity(mapIntent);
             }
 
         }
